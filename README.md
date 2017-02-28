@@ -1,8 +1,10 @@
 ##Prerequisites for using the ilos Button plugin for Atto:
 
 * Access to the server where Moodle is installed and running. As this plugin is not registered for automatic update, it cannot be upgraded from Moodle UI and requires direct access to the server.
+<!--
 * The Moodle 2.0 Plugin for ilos. The plugin and instructions for installation may be found at 
   https://github.com/ilos/Moodle-2.0-Plugin-for-ilos
+-->
 * The Atto rich text editor for Moodle. This may be enabled by navigating to **Site Administration > Plugins 
 > Text editors > Manage editors** on the left-hand column of the Moodle page and using the up/down arrows to 
 move 'Atto HTML editor' to the top of the list. Make sure that Atto is enabled by confirming that its corresponding 
@@ -11,7 +13,7 @@ icon under the 'Enable' column shows an unobstructed eye, or click the icon unti
 
 ##Installation instructions:
 
-1. Get the latest release source package (either as zip or tar.gz) from https://github.com/ilos/ilos-Button-for-Atto/releases
+1. Get the latest release source package (either as zip or tar.gz) from https://github.com/ilosvideos/moodleAttoPlugin/releases
 1. Log in to Moodle server.
 1. (Upgrade only) delete /lib/editor/atto/plugins/ilosbutton
 1. Extract source package under /lib/editor/atto/plugins. "ilos-Button-for-Atto-master" directory should be created.
