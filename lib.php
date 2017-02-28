@@ -55,8 +55,8 @@ function atto_ilosbutton_params_for_js($elementid, $options, $fpoptions) {
     // Gets Ilos folder ID and for course from database on the server to which the course was provisioned.
     // If the course has not been provisioned, this will not return a value and the user will be able to select
     // Folders and videos from the server specified as default during the plugin setup.
-    $ilosid = $DB->get_field('block_ilos_foldermap', 'ilos_id', array('moodleid' => $coursecontext->instanceid));
-    $servername = $DB->get_field('block_ilos_foldermap', 'ilos_server', array('moodleid' => $coursecontext->instanceid));
+    //$ilosid = $DB->get_field('block_ilos_foldermap', 'ilos_id', array('moodleid' => $coursecontext->instanceid));
+    //$servername = $DB->get_field('block_ilos_foldermap', 'ilos_server', array('moodleid' => $coursecontext->instanceid));
 
     $usercontextid = context_user::instance($USER->id)->id;
     $disabled = false;
@@ -64,8 +64,6 @@ function atto_ilosbutton_params_for_js($elementid, $options, $fpoptions) {
     // Config array.
     $params = array();
     $params['usercontextid'] = $usercontextid;
-    $params['coursecontext'] = $ilosid;
-    $params['servename'] = $servername;
 
     // If they don't have permission don't show it.
     if (!has_capability('atto/ilosbutton:visible', $coursecontext) ) {
@@ -76,7 +74,7 @@ function atto_ilosbutton_params_for_js($elementid, $options, $fpoptions) {
     $params['disabled'] = $disabled;
 
     // Add our default server.
-    $params['defaultserver'] = get_config('atto_ilosbutton', 'defaultserver');
+    //$params['defaultserver'] = get_config('atto_ilosbutton', 'defaultserver');
 
     return $params;
 }
