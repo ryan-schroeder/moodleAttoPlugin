@@ -1,7 +1,7 @@
 {
-    "name": "moodle-atto_panoptobutton-button",
+    "name": "moodle-atto_ilosbutton-button",
     "builds": {
-        "moodle-atto_panoptobutton-button": {
+        "moodle-atto_ilosbutton-button": {
             "jsfiles": [
                 "button.js"
             ]

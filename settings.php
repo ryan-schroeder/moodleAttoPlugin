@@ -15,21 +15,21 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * panoptobutton settings.
+ * ilosbutton settings.
  *
- * @package   atto_panoptobutton
- * @copyright Panopto 2009 - 2016
+ * @package   atto_ilosbutton
+ * @copyright Ilos 2-17
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 
 defined('MOODLE_INTERNAL') || die();
 
-$ADMIN->add('editoratto', new admin_category('atto_panoptobutton', new lang_string('pluginname', 'atto_panoptobutton')));
+$ADMIN->add('editoratto', new admin_category('atto_ilosbutton', new lang_string('pluginname', 'atto_ilosbutton')));
 
-$settings = new admin_settingpage('atto_panoptobutton_settings', new lang_string('settings', 'atto_panoptobutton'));
+$settings = new admin_settingpage('atto_ilosbutton_settings', new lang_string('settings', 'atto_ilosbutton'));
 if ($ADMIN->fulltree) {
     // An option setting.
-    $settings->add(new admin_setting_configtext('atto_panoptobutton/defaultserver',
-        get_string('defaultserver', 'atto_panoptobutton'), '', 'www.example.com', PARAM_TEXT));
+    $settings->add(new admin_setting_configtext('atto_ilosbutton/defaultserver',
+        get_string('defaultserver', 'atto_ilosbutton'), '', 'www.example.com', PARAM_TEXT));
 }

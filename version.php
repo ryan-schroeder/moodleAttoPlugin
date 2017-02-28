@@ -15,10 +15,10 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Atto panoptobutton  version file.
+ * Atto ilosbutton  version file.
  *
- * @package    atto_panoptobutton
- * @copyright  Panopto 2009 - 2016
+ * @package    atto_ilosbutton
+ * @copyright  Ilos 2017
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -31,5 +31,5 @@ $plugin->version   = 2017012500;
 $plugin->requires  = 2014051200;
 
 // Full name of the plugin (used for diagnostics).
-$plugin->component = 'atto_panoptobutton';
+$plugin->component = 'atto_ilosbutton';
 $plugin->maturity  = MATURITY_BETA;

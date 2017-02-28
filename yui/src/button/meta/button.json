@@ -1,5 +1,5 @@
 {
-    "moodle-atto_panoptobutton-button": {
+    "moodle-atto_ilosbutton-button": {
         "requires": [
             "moodle-editor_atto-plugin"
         ]

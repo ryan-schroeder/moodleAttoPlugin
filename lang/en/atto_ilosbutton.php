@@ -15,20 +15,20 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'atto_panoptobutton', language 'en'.
+ * Strings for component 'atto_ilosbutton', language 'en'.
  *
- * @package    atto_panoptobutton
- * @copyright  Panopto 2009 - 2016
+ * @package    atto_ilosbutton
+ * @copyright  Ilos 2017
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['createpanoptobutton'] = 'Create panoptobutton';
-$string['pluginname'] = 'Panopto';
-$string['settings'] = 'Panopto';
+$string['createilosbutton'] = 'Create ilosbutton';
+$string['pluginname'] = 'Ilos videos';
+$string['settings'] = 'Ilos videos';
 $string['browse'] = 'Browse';
 $string['visible'] = 'Visible';
-$string['dialogtitle'] = 'Insert from Panopto';
+$string['dialogtitle'] = 'Embed from Ilos';
 $string['insert'] = 'Insert';
 $string['cancel'] = 'Cancel';
 $string['defaultserver'] = 'Default server for retrieving videos (used when not in a provisioned course)';
-$string['panoptobutton:visible'] = 'Visible';
+$string['ilosbutton:visible'] = 'Visible';
