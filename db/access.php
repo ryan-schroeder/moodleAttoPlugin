@@ -17,15 +17,15 @@
 /**
  * Plugin capabilities
  *
- * @package    atto_panoptobutton
- * @copyright  Panopto 2009 - 2016
+ * @package    atto_ilosbutton
+ * @copyright  Ilos 2017
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $capabilities = array(
-    'atto/panoptobutton:visible' => array(
+    'atto/ilosbutton:visible' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
         'archetypes' => array(

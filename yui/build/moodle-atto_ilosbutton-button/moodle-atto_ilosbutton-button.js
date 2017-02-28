@@ -1,4 +1,4 @@
-YUI.add('moodle-atto_panoptobutton-button', function (Y, NAME) {
+YUI.add('moodle-atto_ilosbutton-button', function (Y, NAME) {
 
 // This file is part of Moodle - http://moodle.org/
 //
@@ -16,31 +16,28 @@ YUI.add('moodle-atto_panoptobutton-button', function (Y, NAME) {
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /*
- * @package    atto_panoptobutton
- * @copyright  Panopto 2009 - 2016 With contributions from Joseph Malmsten (joseph.malmsten@gmail.com)
+ * @package    atto_ilosbutton
+ * @copyright  Ilos 2017 With contributions from Joseph Malmsten (joseph.malmsten@gmail.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /**
- * @module moodle-atto_panoptobutton-button
+ * @module moodle-atto_ilosbutton-button
  */
 
 /**
- * Atto text editor panoptobutton plugin.
+ * Atto text editor ilosbutton plugin.
  *
- * @namespace M.atto_panoptobutton
+ * @namespace M.atto_ilosbutton
  * @class button
  * @extends M.editor_atto.EditorPlugin
  */
 
-// TODO: Use some helper to register one-shot event handling.
-// TODO: Use string format helper.
-
-var COMPONENTNAME = 'atto_panoptobutton',
+var COMPONENTNAME = 'atto_ilosbutton',
     servername = '',
     courseid = '',
     idstring = '',
-    IFSOURCE = servername + '/Panopto/Pages/Sessions/EmbeddedUpload.aspx',
+    IFSOURCE = servername + '/Ilos/Pages/Sessions/EmbeddedUpload.aspx',
     IFHEIGHT = 550,
     IFWIDTH = 1060,
     IFID = 'pageframe',
@@ -55,7 +52,7 @@ var COMPONENTNAME = 'atto_panoptobutton',
         '</div>' +
         '<button class="{{CSS.INPUTSUBMIT}}" id="{{submitid}}" style="{{selectalign}}">{{get_string "insert" component}}</button>';
 
-    Y.namespace('M.atto_panoptobutton').Button = Y.Base.create('button', Y.M.editor_atto.EditorPlugin, [], {
+    Y.namespace('M.atto_ilosbutton').Button = Y.Base.create('button', Y.M.editor_atto.EditorPlugin, [], {
         /**
          * Initialize the button
          *
@@ -77,10 +74,10 @@ var COMPONENTNAME = 'atto_panoptobutton',
             // Set name of button icon to be loaded.
             var icon = 'iconone';
 
-            // Add the panoptobutton icon/buttons.
+            // Add the ilosbutton icon/buttons.
             this.addButton({
                 icon: 'ed/' + icon,
-                iconComponent: 'atto_panoptobutton',
+                iconComponent: 'atto_ilosbutton',
                 buttonName: icon,
                 callback: this._displayDialogue,
                 callbackArgs: icon
@@ -88,7 +85,7 @@ var COMPONENTNAME = 'atto_panoptobutton',
         },
 
         /**
-         * Display the panoptobutton Dialogue
+         * Display the ilosbutton Dialogue
          *
          * @method _displayDialogue
          * @private
@@ -164,12 +161,12 @@ var COMPONENTNAME = 'atto_panoptobutton',
             aservername = this.get('servename');
             if (aservername) {
                 document.getElementById('pageframe').src = 'https://' + aservername +
-                    '/Panopto/Pages/Sessions/EmbeddedUpload.aspx' + idstring;
+                    '/Ilos/Pages/Sessions/EmbeddedUpload.aspx' + idstring;
 
                 servername = aservername;
             } else {
                 document.getElementById('pageframe').src = 'https://' + defaultserver +
-                    '/Panopto/Pages/Sessions/EmbeddedUpload.aspx' + idstring;
+                    '/Ilos/Pages/Sessions/EmbeddedUpload.aspx' + idstring;
 
                 servername = defaultserver;
             }
@@ -256,18 +253,18 @@ var COMPONENTNAME = 'atto_panoptobutton',
                             if (typeof names[i] !== 'undefined') {
                                 thumbnailChunk += "<div width='450'><a style='max-width: 450px; display: inline-block;" +
                                     "text-overflow: ellipsis; white-space: nowrap; overflow: hidden;'" +
-                                    "href='https://" + servername + '/Panopto/Pages/Viewer.aspx?id=' + ids[i] +
+                                    "href='https://" + servername + '/Ilos/Pages/Viewer.aspx?id=' + ids[i] +
                                     "' target='_blank'>" + names[i] + "</a></div>";
                             }
 
-                            thumbnailChunk += "<a href='https://" + servername + '/Panopto/Pages/Viewer.aspx?id=' +
+                            thumbnailChunk += "<a href='https://" + servername + '/Ilos/Pages/Viewer.aspx?id=' +
                                 ids[i] + "' target='_blank'>" +
-                                "<img width='128' height='72' src='https://" + servername + '/Panopto/PublicAPI/SessionPreviewImage?id=' +
+                                "<img width='128' height='72' src='https://" + servername + '/Ilos/PublicAPI/SessionPreviewImage?id=' +
                                 ids[i] + "'></img></a><br></div>";
 
                             objectstring += "<div style='position: relative;'>" +
                                 thumbnailChunk +
-                                "<div>" + "<object data='https://" + servername + '/Panopto/Pages/Embed.aspx?id=' +
+                                "<div>" + "<object data='https://" + servername + '/Ilos/Pages/Embed.aspx?id=' +
                                 ids[i] +
                                 "&v=1' width='450' height='300' frameborder='0'></object><br></div>" +
                                 "</div>";
