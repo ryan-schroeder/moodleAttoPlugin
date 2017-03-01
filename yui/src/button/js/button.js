@@ -186,16 +186,7 @@ var COMPONENTNAME = 'atto_ilosbutton',
             disabled: {
                 value: false
             },
-            usercontextid: {
-                value: null
-            },
-            defaultserver: {
-                value: ''
-            },
             coursecontext: {
-                value: null
-            },
-            servename: {
                 value: null
             }
         }

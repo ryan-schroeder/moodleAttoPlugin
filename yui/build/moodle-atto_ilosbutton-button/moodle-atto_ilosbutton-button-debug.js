@@ -125,8 +125,9 @@ var COMPONENTNAME = 'atto_ilosbutton',
 
             var returnUrl = pageUrl+'/mod/lti/return.php?course='+this.get('coursecontext');
 
-            var launchUrl = serverPath+'?oauth_consumer_key='+orgApiKey+'&launch_presentation_return_url='+encodeURI(returnUrl)
-                +"&tool_consumer_info_product_family_code=moodle";
+            var launchUrl = serverPath+'?oauth_consumer_key='+orgApiKey+'&launch_presentation_return_url='
+                + encodeURI(returnUrl)
+                + "&tool_consumer_info_product_family_code=moodle";
 
             var template = Y.Handlebars.compile(TEMPLATE),
                 content = Y.Node.create(template({
@@ -167,115 +168,27 @@ var COMPONENTNAME = 'atto_ilosbutton',
                 var $search = $url.search("https://");
                 $url = $url.substr($search);
 
-                if ($url.indexOf("ilosvideos") >= 0)
+                if ($url.indexOf("ilosvideos") <= 0)
                 {
-
-                    var $iframe = '<iframe allowfullscreen="" frameborder="0" height="315"'
-                        + ' src="'+$url+'" width="560"></iframe>';
-                    console.log($iframe);
-
-                    parent.getDialogue({ focusAfterHide: null }).hide();
-                    parent.editor.focus();
-                    parent.get('host').insertContentAtFocusPoint($iframe);
-                    parent.markUpdated();
+                    return;
                 }
+
+                var $iframe = '<iframe allowfullscreen="" frameborder="0" height="315"'
+                    + ' src="'+$url+'" width="560"></iframe>';
+
+                parent.getDialogue({ focusAfterHide: null }).hide();
+                parent.editor.focus();
+                parent.get('host').insertContentAtFocusPoint($iframe);
+                parent.markUpdated();
+
             };
-
-            /*
-*/
-/*            var win,
-                message,
-                eventmethod,
-                evententer,
-                messageevent,
-                parent = this,
-                eventfired = false;
-
-            e.preventDefault();
-
-            win = document.getElementById('pageframe').contentWindow,
-            message = {
-                cmd: 'createEmbeddedFrame'
-            };
-            win.postMessage(JSON.stringify(message), 'https://' + servername);
-
-            eventmethod = window.addEventListener ? 'addEventListener' : 'attachEvent';
-            evententer = window[eventmethod];
-            messageevent = eventmethod === 'attachEvent' ? 'onmessage' : 'message';
-
-            // Event triggered when response is received from server with object ids.
-            evententer(messageevent, function (e) {
-                var message,
-                    objectstring,
-                    thumbnailChunk,
-                    ids,
-                    names,
-                    i;
-                if (!eventfired) {
-                    message = JSON.parse(e.data);
-                    objectstring = '';
-
-                    // Called when "Insert" is clicked. Creates HTML for embedding each selected video into the editor.
-                    if (message.cmd === 'deliveryList') {
-                        ids = message.ids;
-                        names = message.names;
-
-                        for (i = 0; i < ids.length; ++i) {
-                            thumbnailChunk = "<div style='position: absolute; z-index: -1;'>";
-
-                            if (typeof names[i] !== 'undefined') {
-                                thumbnailChunk += "<div width='450'><a style='max-width: 450px; display: inline-block;" +
-                                    "text-overflow: ellipsis; white-space: nowrap; overflow: hidden;'" +
-                                    "href='https://" + servername + '/Ilos/Pages/Viewer.aspx?id=' + ids[i] +
-                                    "' target='_blank'>" + names[i] + "</a></div>";
-                            }
-
-                            thumbnailChunk += "<a href='https://" + servername + '/Ilos/Pages/Viewer.aspx?id=' +
-                                ids[i] + "' target='_blank'>" +
-                                "<img width='128' height='72' src='https://" + servername + '/Ilos/PublicAPI/SessionPreviewImage?id=' +
-                                ids[i] + "'></img></a><br></div>";
-
-                            objectstring += "<div style='position: relative;'>" +
-                                thumbnailChunk +
-                                "<div>" + "<object data='https://" + servername + '/Ilos/Pages/Embed.aspx?id=' +
-                                ids[i] +
-                                "&v=1' width='450' height='300' frameborder='0'></object><br></div>" +
-                                "</div>";
-                        }
-
-                        // Hide the pop-up after we've received the selection in the "deliveryList" message.
-                        // Hiding before message is received causes exceptions in IE.
-                        parent.getDialogue({ focusAfterHide: null }).hide();
-
-                        parent.editor.focus();
-                        parent.get('host').insertContentAtFocusPoint(objectstring);
-                        parent.markUpdated();
-                    }
-
-                    // This plug-in instance has completed the job, but it's still alive until editor is closed.
-                    // If another plug-in instance is created, the event is posted also this instance.
-                    // We need to ignore such events.
-                    eventfired = true;
-                }
-            }, false);*/
         }
     }, {
         ATTRS: {
             disabled: {
                 value: false
             },
-
-            usercontextid: {
-                value: null
-            },
-
-            defaultserver: {
-                value: ''
-            },
             coursecontext: {
-                value: null
-            },
-            servename: {
                 value: null
             }
         }
