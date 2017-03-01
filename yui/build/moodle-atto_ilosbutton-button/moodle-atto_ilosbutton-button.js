@@ -33,24 +33,14 @@ YUI.add('moodle-atto_ilosbutton-button', function (Y, NAME) {
  * @extends M.editor_atto.EditorPlugin
  */
 
+var orgApiKey = 'mbWjIVx83qaBLFMv8x8oIzilRqkGjJBwPy73yn50'; //You can find your API key in
+var serverPath = 'https://cloud.ilosvideos.com/lti/embed';
+var pageUrl = window.location.protocol + "//" + window.location.host;
+var iframeId = 'moodleLtiIframe';
+
 var COMPONENTNAME = 'atto_ilosbutton',
-    servername = '',
-    courseid = '',
-    idstring = '',
-    IFSOURCE = 'https://cloud.ilosvideos.com/lti/embed',
-    IFHEIGHT = 550,
-    IFWIDTH = 1060,
-    IFID = 'pageframe',
-    SUBMITID = 'submit',
     SELECTALIGN = 'float:left; display:none',
-    CSS = {
-        INPUTSUBMIT: 'atto_media_urlentrysubmit'
-    },
-    TEMPLATE = '<div id="{{elementid}}_{{innerform}}" class="mdl-align">' +
-        '<iframe src="{{isource}}" id="{{iframeID}}" height="{{iframeheight}}" width="{{iframewidth}}" scrolling="auto"></iframe>' +
-            '<br><br>' +
-        '</div>' +
-        '<button class="{{CSS.INPUTSUBMIT}}" id="{{submitid}}" style="{{selectalign}}">{{get_string "insert" component}}</button>';
+    TEMPLATE = '<iframe src="{{src}}" id="{{id}}" height="{{height}}" width="{{width}}" scrolling="auto"></iframe>';
 
     Y.namespace('M.atto_ilosbutton').Button = Y.Base.create('button', Y.M.editor_atto.EditorPlugin, [], {
         /**
@@ -58,20 +48,13 @@ var COMPONENTNAME = 'atto_ilosbutton',
          *
          * @method Initializer
          */
+
         initializer: function () {
             // If we don't have the capability to view then give up.
             if (this.get('disabled')) {
                 return;
             }
 
-            // Get the external id of the course, and if it exists, append to the url for the iframe.
-            courseid = this.get('coursecontext');
-
-            if (courseid) {
-                idstring = '?folderID=' + courseid;
-            }
-
-            // Set name of button icon to be loaded.
             var icon = 'iconone';
 
             // Add the ilosbutton icon/buttons.
@@ -91,21 +74,14 @@ var COMPONENTNAME = 'atto_ilosbutton',
          * @private
          */
         _displayDialogue: function (e, clickedicon) {
-            var width = 1150,
-                height = 720,
+            var width = 900,
+                height = 700,
                 dialogue = this.getDialogue({
                     headerContent: M.util.get_string('dialogtitle', COMPONENTNAME),
                     width: width + 'px',
                     height: height + 'px',
                     focusAfterHide: clickedicon
-                }),
-                buttonform,
-                bodycontent,
-                defaultserver,
-                eventmethod,
-                evententer,
-                messageevent,
-                aservername;
+                });
 
             e.preventDefault();
 
@@ -129,51 +105,12 @@ var COMPONENTNAME = 'atto_ilosbutton',
             if (dialogue.height !== height + 'px') {
                 dialogue.set('height', height + 'px');
             }
-            // Append buttons to iframe.
-            buttonform = this._getFormContent(clickedicon);
 
-            bodycontent = Y.Node.create('<div></div>');
-            bodycontent.append(buttonform);
-
-            defaultserver = this.get('defaultserver');
-
-            // Setup for message handling from iframe.
-            eventmethod = window.addEventListener ? 'addEventListener' : 'attachEvent';
-            evententer = window[eventmethod];
-            messageevent = eventmethod === 'attachEvent' ? 'onmessage' : 'message';
-
-            evententer(messageevent, function (e) {
-                var message = JSON.parse(e.data);
-
-                if (message.cmd === 'ready') {
-                    document.getElementById('submit').style.display = 'block';
-                }
-
-                // If no video is chosen, hide the "Insert" button.
-                if (message.cmd === 'notReady') {
-                    document.getElementById('submit').style.display = 'none';
-                }
-            }, false);
-
-            // Set to bodycontent.
-            dialogue.set('bodyContent', bodycontent);
-
-            aservername = this.get('servename');
-            if (aservername) {
-                document.getElementById('pageframe').src = 'https://' + aservername +
-                    '/Ilos/Pages/Sessions/EmbeddedUpload.aspx' + idstring;
-
-                servername = aservername;
-            } else {
-                document.getElementById('pageframe').src = 'https://' + defaultserver +
-                    '/Ilos/Pages/Sessions/EmbeddedUpload.aspx' + idstring;
-
-                servername = defaultserver;
-            }
+            dialogue.set('bodyContent', this._getFormContent(clickedicon));
 
             dialogue.show();
 
-            this.markUpdated();
+            this._doInsert(this);
         },
 
         /**
@@ -185,22 +122,25 @@ var COMPONENTNAME = 'atto_ilosbutton',
          * @private
          */
         _getFormContent: function (clickedicon) {
+
+            var returnUrl = pageUrl+'/mod/lti/return.php?course='+this.get('coursecontext');
+
+            var launchUrl = serverPath+'?oauth_consumer_key='+orgApiKey+'&launch_presentation_return_url='+encodeURI(returnUrl)
+                +"&tool_consumer_info_product_family_code=moodle";
+
             var template = Y.Handlebars.compile(TEMPLATE),
                 content = Y.Node.create(template({
                     elementid: this.get('host').get('elementid'),
-                    CSS: CSS,
                     component: COMPONENTNAME,
                     clickedicon: clickedicon,
-                    isource: IFSOURCE + idstring,
-                    iframeheight: IFHEIGHT,
-                    iframeID: IFID,
-                    submitid: SUBMITID,
-                    iframewidth: IFWIDTH,
+                    src: launchUrl,
+                    height: 650,
+                    width: 850,
+                    id: iframeId,
                     selectalign: SELECTALIGN
                 }));
 
             this._form = content;
-            this._form.one('.' + CSS.INPUTSUBMIT).on('click', this._doInsert, this);
             return content;
         },
 
@@ -209,8 +149,41 @@ var COMPONENTNAME = 'atto_ilosbutton',
          * @method _getDialogueContent
          * @private
          */
-        _doInsert: function (e) {
-            var win,
+        _doInsert: function (parent) {
+
+            var $iframeEl = document.getElementById( iframeId );
+
+            $iframeEl.onload= function() {
+
+                var $innerIframe = $iframeEl.contentDocument;
+
+                if(!$innerIframe)
+                {
+                    return;
+                }
+
+                var $innerElement = $innerIframe.getElementById("page-content").querySelector('[role="main"]');
+                var $url = $innerElement.innerText;
+                var $search = $url.search("https://");
+                $url = $url.substr($search);
+
+                if ($url.indexOf("ilosvideos") >= 0)
+                {
+
+                    var $iframe = '<iframe allowfullscreen="" frameborder="0" height="315"'
+                        + ' src="'+$url+'" width="560"></iframe>';
+                    console.log($iframe);
+
+                    parent.getDialogue({ focusAfterHide: null }).hide();
+                    parent.editor.focus();
+                    parent.get('host').insertContentAtFocusPoint($iframe);
+                    parent.markUpdated();
+                }
+            };
+
+            /*
+*/
+/*            var win,
                 message,
                 eventmethod,
                 evententer,
@@ -284,7 +257,7 @@ var COMPONENTNAME = 'atto_ilosbutton',
                     // We need to ignore such events.
                     eventfired = true;
                 }
-            }, false);
+            }, false);*/
         }
     }, {
         ATTRS: {
