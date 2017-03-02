@@ -33,35 +33,35 @@ YUI.add('moodle-atto_ilosbutton-button', function (Y, NAME) {
  * @extends M.editor_atto.EditorPlugin
  */
 
-var serverPath = 'https://cloud.ilosvideos.com/lti/embed';
-var iframeId = 'moodleLtiIframe';
+var _serverPath = 'https://cloud.ilosvideos.com/lti/embed';
+var _iframeId = 'moodleLtiIframe';
 
 var COMPONENTNAME = 'atto_ilosbutton',
     SELECTALIGN = 'float:left; display:none',
     TEMPLATE = '<iframe src="{{src}}" id="{{id}}" height="{{height}}" width="{{width}}" scrolling="auto"></iframe>';
 
     Y.namespace('M.atto_ilosbutton').Button = Y.Base.create('button', Y.M.editor_atto.EditorPlugin, [], {
+
         /**
          * Initialize the button
          *
          * @method Initializer
          */
-
         initializer: function () {
             // If we don't have the capability to view then give up.
             if (this.get('disabled')) {
                 return;
             }
 
-            var icon = 'iconone';
+            var $icon = 'iconone';
 
             // Add the ilosbutton icon/buttons.
             this.addButton({
-                icon: 'ed/' + icon,
+                icon: 'ed/' + $icon,
                 iconComponent: 'atto_ilosbutton',
-                buttonName: icon,
+                buttonName: $icon,
                 callback: this._displayDialogue,
-                callbackArgs: icon
+                callbackArgs: $icon
             });
         },
 
@@ -71,42 +71,42 @@ var COMPONENTNAME = 'atto_ilosbutton',
          * @method _displayDialogue
          * @private
          */
-        _displayDialogue: function (e, clickedicon) {
-            var width = 900,
-                height = 700,
-                dialogue = this.getDialogue({
+        _displayDialogue: function (e, $clickedicon) {
+            var $width = 900,
+                $height = 700,
+                $dialogue = this.getDialogue({
                     headerContent: M.util.get_string('dialogtitle', COMPONENTNAME),
-                    width: width + 'px',
-                    height: height + 'px',
-                    focusAfterHide: clickedicon
+                    width: $width + 'px',
+                    height: $height + 'px',
+                    focusAfterHide: $clickedicon
                 });
 
             e.preventDefault();
 
             // When dialog becomes invisible, reset it. This fixes problems with multiple editors per page.
-            dialogue.after('visibleChange', function() {
-                var attributes = dialogue.getAttrs();
+            $dialogue.after('visibleChange', function() {
+                var $attributes = $dialogue.getAttrs();
 
-                if(attributes.visible === false) {
+                if($attributes.visible === false) {
                     setTimeout(function() {
-                        dialogue.reset();
+                        $dialogue.reset();
                     }, 5);
                 }
             });
 
             // Dialog doesn't detect changes in width without this.
             // If you reuse the dialog, this seems necessary.
-            if (dialogue.width !== width + 'px') {
-                dialogue.set('width', width + 'px');
+            if ($dialogue.width !== $width + 'px') {
+                $dialogue.set('width', $width + 'px');
             }
 
-            if (dialogue.height !== height + 'px') {
-                dialogue.set('height', height + 'px');
+            if ($dialogue.height !== $height + 'px') {
+                $dialogue.set('height', $height + 'px');
             }
 
-            dialogue.set('bodyContent', this._getFormContent(clickedicon));
+            $dialogue.set('bodyContent', this._getFormContent($clickedicon));
 
-            dialogue.show();
+            $dialogue.show();
 
             this._doInsert(this);
         },
@@ -119,32 +119,31 @@ var COMPONENTNAME = 'atto_ilosbutton',
          * @return {Node} The content to place in the dialogue.
          * @private
          */
-        _getFormContent: function (clickedicon) {
+        _getFormContent: function ($clickedicon) {
 
             var $sessKey =  this.get('sessKey');
             var $returnUrl = this.get('webRoot')+'/mod/lti/return.php?course='+this.get('courseId')+'&sesskey='+$sessKey;
-            console.log($returnUrl);
 
             var $orgApiKey =  this.get('orgApiKey');
 
-            var $launchUrl = serverPath+'?oauth_consumer_key='+$orgApiKey+'&launch_presentation_return_url='
+            var $launchUrl = _serverPath+'?oauth_consumer_key='+$orgApiKey+'&launch_presentation_return_url='
                 + encodeURIComponent($returnUrl)
                 + "&tool_consumer_info_product_family_code=moodle";
-            console.log($launchUrl);
-            var template = Y.Handlebars.compile(TEMPLATE),
-                content = Y.Node.create(template({
+
+            var $template = Y.Handlebars.compile(TEMPLATE),
+                $content = Y.Node.create($template({
                     elementid: this.get('host').get('elementid'),
                     component: COMPONENTNAME,
-                    clickedicon: clickedicon,
+                    clickedicon: $clickedicon,
                     src: $launchUrl,
                     height: 650,
                     width: 850,
-                    id: iframeId,
+                    id: _iframeId,
                     selectalign: SELECTALIGN
                 }));
 
-            this._form = content;
-            return content;
+            this._form = $content;
+            return $content;
         },
 
         /**
@@ -152,9 +151,9 @@ var COMPONENTNAME = 'atto_ilosbutton',
          * @method _getDialogueContent
          * @private
          */
-        _doInsert: function (parent) {
+        _doInsert: function ($parent) {
 
-            var $iframeEl = document.getElementById( iframeId );
+            var $iframeEl = document.getElementById( _iframeId );
 
             $iframeEl.onload= function() {
 
@@ -178,10 +177,10 @@ var COMPONENTNAME = 'atto_ilosbutton',
                 var $iframe = '<iframe allowfullscreen="" frameborder="0" height="315"'
                     + ' src="'+$url+'" width="560"></iframe>';
 
-                parent.getDialogue({ focusAfterHide: null }).hide();
-                parent.editor.focus();
-                parent.get('host').insertContentAtFocusPoint($iframe);
-                parent.markUpdated();
+                $parent.getDialogue({ focusAfterHide: null }).hide();
+                $parent.editor.focus();
+                $parent.get('host').insertContentAtFocusPoint($iframe);
+                $parent.markUpdated();
 
             };
         }
