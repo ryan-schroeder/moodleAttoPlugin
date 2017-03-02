@@ -32,10 +32,7 @@ function atto_ilosbutton_strings_for_js() {
 
     global $PAGE;
 
-    $PAGE->requires->strings_for_js(array('insert',
-                                          'cancel',
-                                          'dialogtitle'),
-                                    'atto_ilosbutton');
+    $PAGE->requires->strings_for_js(array('dialogtitle'), 'atto_ilosbutton');
 }
 
 /**
@@ -48,33 +45,34 @@ function atto_ilosbutton_strings_for_js() {
  */
 function atto_ilosbutton_params_for_js($elementid, $options, $fpoptions) {
 
-    global $USER, $COURSE, $DB;
+    global $USER, $COURSE, $DB, $CFG;
 
     $coursecontext = context_course::instance($COURSE->id);
 
-    // Gets Ilos folder ID and for course from database on the server to which the course was provisioned.
-    // If the course has not been provisioned, this will not return a value and the user will be able to select
-    // Folders and videos from the server specified as default during the plugin setup.
-    //$ilosid = $DB->get_field('block_ilos_foldermap', 'ilos_id', array('moodleid' => $coursecontext->instanceid));
-    //$servername = $DB->get_field('block_ilos_foldermap', 'ilos_server', array('moodleid' => $coursecontext->instanceid));
-
-    $usercontextid = context_user::instance($USER->id)->id;
     $disabled = false;
 
-    // Config array.
     $params = array();
-    $params['usercontextid'] = $usercontextid;
 
     // If they don't have permission don't show it.
     if (!has_capability('atto/ilosbutton:visible', $coursecontext) ) {
         $disabled = true;
     }
 
-    // Add disabled param.
+    $params['courseId'] = $COURSE->id;
+
+    $params['orgApiKey'] = get_config('atto_ilosbutton', 'orgApiKey');
+
+    if($params['orgApiKey'] == '')
+    {
+        $disabled = true;
+    }
+
     $params['disabled'] = $disabled;
 
-    // Add our default server.
-    //$params['defaultserver'] = get_config('atto_ilosbutton', 'defaultserver');
+    $params["webRoot"] = $CFG->wwwroot;
+
+    $params["sessKey"] = $USER->sesskey;
+
 
     return $params;
 }

@@ -15,21 +15,21 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Atto ilosbutton  version file.
+ * ilosbutton settings.
  *
- * @package    atto_ilosbutton
- * @copyright  Ilos 2017
- * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package   atto_ilosbutton
+ * @copyright Ilos 2017
+ * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+
 
 defined('MOODLE_INTERNAL') || die();
 
-// The current plugin version (Date: YYYYMMDDXX).
-$plugin->version   = 2017030202;
+$ADMIN->add('editoratto', new admin_category('atto_ilosbutton', new lang_string('pluginname', 'atto_ilosbutton')));
 
-// Requires this Moodle version - 2.7.
-$plugin->requires  = 2014051200;
-
-// Full name of the plugin (used for diagnostics).
-$plugin->component = 'atto_ilosbutton';
-$plugin->maturity  = MATURITY_BETA;
+$settings = new admin_settingpage('atto_ilosbutton_settings', new lang_string('settings', 'atto_ilosbutton'));
+if ($ADMIN->fulltree) {
+    // An option setting.
+    $settings->add(new admin_setting_configtext('atto_ilosbutton/orgApiKey',
+        get_string('orgApiKey', 'atto_ilosbutton'), '', '', PARAM_TEXT));
+}

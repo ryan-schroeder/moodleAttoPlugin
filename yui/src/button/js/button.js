@@ -31,9 +31,7 @@
  * @extends M.editor_atto.EditorPlugin
  */
 
-var orgApiKey = 'mbWjIVx83qaBLFMv8x8oIzilRqkGjJBwPy73yn50'; //You can find your API key in
 var serverPath = 'https://cloud.ilosvideos.com/lti/embed';
-var pageUrl = window.location.protocol + "//" + window.location.host;
 var iframeId = 'moodleLtiIframe';
 
 var COMPONENTNAME = 'atto_ilosbutton',
@@ -121,18 +119,22 @@ var COMPONENTNAME = 'atto_ilosbutton',
          */
         _getFormContent: function (clickedicon) {
 
-            var returnUrl = pageUrl+'/mod/lti/return.php?course='+this.get('coursecontext');
+            var $sessKey =  this.get('sessKey');
+            var $returnUrl = this.get('webRoot')+'/mod/lti/return.php?course='+this.get('courseId')+'&sesskey='+$sessKey;
+            console.log($returnUrl);
 
-            var launchUrl = serverPath+'?oauth_consumer_key='+orgApiKey+'&launch_presentation_return_url='
-                + encodeURI(returnUrl)
+            var $orgApiKey =  this.get('orgApiKey');
+
+            var $launchUrl = serverPath+'?oauth_consumer_key='+$orgApiKey+'&launch_presentation_return_url='
+                + encodeURIComponent($returnUrl)
                 + "&tool_consumer_info_product_family_code=moodle";
-
+            console.log($launchUrl);
             var template = Y.Handlebars.compile(TEMPLATE),
                 content = Y.Node.create(template({
                     elementid: this.get('host').get('elementid'),
                     component: COMPONENTNAME,
                     clickedicon: clickedicon,
-                    src: launchUrl,
+                    src: $launchUrl,
                     height: 650,
                     width: 850,
                     id: iframeId,
@@ -186,7 +188,16 @@ var COMPONENTNAME = 'atto_ilosbutton',
             disabled: {
                 value: false
             },
-            coursecontext: {
+            courseId: {
+                value: null
+            },
+            orgApiKey: {
+                value: null
+            },
+            webRoot: {
+                value: null
+            },
+            sessKey: {
                 value: null
             }
         }
