@@ -18,7 +18,7 @@
  * ilosbutton settings.
  *
  * @package   atto_ilosbutton
- * @copyright Ilos 2-17
+ * @copyright Ilos 2017
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -30,6 +30,6 @@ $ADMIN->add('editoratto', new admin_category('atto_ilosbutton', new lang_string(
 $settings = new admin_settingpage('atto_ilosbutton_settings', new lang_string('settings', 'atto_ilosbutton'));
 if ($ADMIN->fulltree) {
     // An option setting.
-    $settings->add(new admin_setting_configtext('atto_ilosbutton/defaultserver',
-        get_string('defaultserver', 'atto_ilosbutton'), '', 'www.example.com', PARAM_TEXT));
+    $settings->add(new admin_setting_configtext('atto_ilosbutton/orgApiKey',
+        get_string('orgApiKey', 'atto_ilosbutton'), '', '', PARAM_TEXT));
 }
