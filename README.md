@@ -1,14 +1,8 @@
 ##Prerequisites for using the ilos Button plugin for Atto:
 
 * Access to the server where Moodle is installed and running. As this plugin is not registered for automatic update, it cannot be upgraded from Moodle UI and requires direct access to the server.
-<!--
-* The Moodle 2.0 Plugin for ilos. The plugin and instructions for installation may be found at 
-  https://github.com/ilos/Moodle-2.0-Plugin-for-ilos
--->
-* The Atto rich text editor for Moodle. This may be enabled by navigating to **Site Administration > Plugins 
-> Text editors > Manage editors** on the left-hand column of the Moodle page and using the up/down arrows to 
-move 'Atto HTML editor' to the top of the list. Make sure that Atto is enabled by confirming that its corresponding 
-icon under the 'Enable' column shows an unobstructed eye, or click the icon until it appears this way.
+* The Atto rich text editor for Moodle. This may be enabled by navigating to **Site Administration > Plugins > Text editors > Manage editors** on the left-hand column of the Moodle page and using the up/down arrows to 
+move 'Atto HTML editor' to the top of the list. Make sure that Atto is enabled by confirming that its corresponding icon under the 'Enable' column shows an unobstructed eye, or click the icon until it appears this way.
 
 
 ##Installation instructions:
@@ -28,15 +22,12 @@ icon under the 'Enable' column shows an unobstructed eye, or click the icon unti
     
 ##Usage:
 
-1. On a rich text input window on the Moodle site, navigate the cursor to the position at which you would like your video to be inserted and click the ilos button (the button containing the green ilos logo). 
-1. If the current editor is inside a course provisioned to a ilos server, the selection screen that appears will automatically display videos from the server and folder to which the current course was provisioned. If outside of a course page, or in a non-provisioned course, you will have the ability to select folders from the default server specified during the plugin's installation.
-1. Select one or more videos to insert by checking the boxes next to their thumbnail images. When one or more videos is selected, and 'Insert' button will appear in the bottom left-hand corner of the selection window. Clicking this button will close the selection window and insert the selected videos into the editor at the point selected, positioning multiple videos directly on top of one another by default.
-1. Videos in the editor can be positioned like text objects, using the space, tab, or enter keys with the cursor positioned behind them to  change their position in the editor, or the backspace key with the cursor positioned ahead of them to remove them.
-1. To resize a video, click 'Show more buttons' in the editor toolbar (this should be the leftmost button), and then click the 'HTML' button that appears farthest to the right (this button's icon will look like '**< >**'). The content in the editor will change to it's HTML representation. Videos in this view will appear as strings in the form:
+1. On a rich text input window on the Moodle site, navigate the cursor to the position at which you would like your video to be inserted and click the ilos button (the button containing the red ilos logo). 
+1. Login, into your ilos account.
+1. Search the video you want.
+1. Click the video and it should be inserted as an iframe in the rich text editor 
 
-```
-<object type='text/html' data='http://demo.hosted.ilos.com/ilos/Pages/Viewer.aspx?id=7c4afd6d-6e43-4b8e-bde9-425b25e5940f&amp;v=1' width="450" height="300" frameborder='0'>
-```
+[Installation and usage video tutorial](https://app.ilosvideos.com/view/ugE2N2Ee1lOf)
 
 *(Note that object embedding may not work on older browsers)*
 
