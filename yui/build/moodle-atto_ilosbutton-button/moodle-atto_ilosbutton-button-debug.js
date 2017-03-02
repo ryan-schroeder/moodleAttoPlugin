@@ -33,7 +33,7 @@ YUI.add('moodle-atto_ilosbutton-button', function (Y, NAME) {
  * @extends M.editor_atto.EditorPlugin
  */
 
-var _serverPath = 'https://cloud.ilosvideos.com/lti/embed';
+var _serverPath = 'https://app.ilosvideos.com/lti/embed';
 var _iframeId = 'moodleLtiIframe';
 
 var COMPONENTNAME = 'atto_ilosbutton',
