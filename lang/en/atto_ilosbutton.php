@@ -28,5 +28,5 @@ $string['settings'] = 'Ilos videos';
 $string['browse'] = 'Browse';
 $string['visible'] = 'Visible';
 $string['dialogtitle'] = 'Embed from Ilos';
-$string['orgApiKey'] = 'Ilos Organization API Key';
+$string['orgApiKey'] = 'Cunsumer key (public key)';
 $string['ilosbutton:visible'] = 'Visible';
