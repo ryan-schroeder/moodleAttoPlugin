@@ -15,18 +15,18 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'atto_ilosbutton', language 'en'.
+ * Strings for component 'atto_vidgridbutton', language 'en'.
  *
- * @package    atto_ilosbutton
- * @copyright  Ilos 2017
+ * @package    atto_vidgridbutton
+ * @copyright  VidGrid 2018
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-$string['createilosbutton'] = 'Create ilosbutton';
-$string['pluginname'] = 'Ilos videos';
-$string['settings'] = 'Ilos videos';
+$string['createvidgridbutton'] = 'Create vidgridbutton';
+$string['pluginname'] = 'VidGrid';
+$string['settings'] = 'VidGrid';
 $string['browse'] = 'Browse';
 $string['visible'] = 'Visible';
-$string['dialogtitle'] = 'Embed from Ilos';
+$string['dialogtitle'] = 'Embed from VidGrid';
 $string['orgApiKey'] = 'Cunsumer key (public key)';
-$string['ilosbutton:visible'] = 'Visible';
+$string['vidgridbutton:visible'] = 'Visible';

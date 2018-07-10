@@ -17,8 +17,8 @@
 /**
  * Atto text editor integration version file.
  *
- * @package    atto_ilosbutton
- * @copyright  Ilos 2017
+ * @package    atto_vidgridbutton
+ * @copyright  VidGrid 2018
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -28,11 +28,11 @@ defined('MOODLE_INTERNAL') || die();
 /**
  * Initialize this plugin
  */
-function atto_ilosbutton_strings_for_js() {
+function atto_vidgridbutton_strings_for_js() {
 
     global $PAGE;
 
-    $PAGE->requires->strings_for_js(array('dialogtitle'), 'atto_ilosbutton');
+    $PAGE->requires->strings_for_js(array('dialogtitle'), 'atto_vidgridbutton');
 }
 
 /**
@@ -43,7 +43,7 @@ function atto_ilosbutton_strings_for_js() {
  * @param array $fpoptions
  * @return array of additional params to pass to javascript init function for this module.
  */
-function atto_ilosbutton_params_for_js($elementid, $options, $fpoptions) {
+function atto_vidgridbutton_params_for_js($elementid, $options, $fpoptions) {
 
     global $USER, $COURSE, $DB, $CFG;
 
@@ -54,13 +54,13 @@ function atto_ilosbutton_params_for_js($elementid, $options, $fpoptions) {
     $params = array();
 
     // If they don't have permission don't show it.
-    if (!has_capability('atto/ilosbutton:visible', $coursecontext) ) {
+    if (!has_capability('atto/vidgridbutton:visible', $coursecontext) ) {
         $disabled = true;
     }
 
     $params['courseId'] = $COURSE->id;
 
-    $params['orgApiKey'] = get_config('atto_ilosbutton', 'orgApiKey');
+    $params['orgApiKey'] = get_config('atto_vidgridbutton', 'orgApiKey');
 
     if($params['orgApiKey'] == '')
     {

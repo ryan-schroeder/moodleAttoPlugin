@@ -1,7 +1,7 @@
 {
-    "name": "moodle-atto_ilosbutton-button",
+    "name": "moodle-atto_vidgridbutton-button",
     "builds": {
-        "moodle-atto_ilosbutton-button": {
+        "moodle-atto_atto_vidgridbutton-button": {
             "jsfiles": [
                 "button.js"
             ]

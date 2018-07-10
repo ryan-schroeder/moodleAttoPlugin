@@ -14,31 +14,31 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /*
- * @package    atto_ilosbutton
- * @copyright  Ilos 2017 With contributions from Joseph Malmsten (joseph.malmsten@gmail.com)
+ * @package    atto_vidgridbutton
+ * @copyright  VidGrid 2018 With contributions from Joseph Malmsten (joseph.malmsten@gmail.com)
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 /**
- * @module moodle-atto_ilosbutton-button
+ * @module moodle-atto_vidgridbutton-button
  */
 
 /**
- * Atto text editor ilosbutton plugin.
+ * Atto text editor vidgridbutton plugin.
  *
- * @namespace M.atto_ilosbutton
+ * @namespace M.atto_vidgridbutton
  * @class button
  * @extends M.editor_atto.EditorPlugin
  */
 
-var _serverPath = 'https://app.ilosvideos.com/lti/embed';
+var _serverPath = 'https://app.vidgrid.com/lti/embed';
 var _iframeId = 'moodleLtiIframe';
 
-var COMPONENTNAME = 'atto_ilosbutton',
+var COMPONENTNAME = 'atto_vidgridbutton',
     SELECTALIGN = 'float:left; display:none',
     TEMPLATE = '<iframe src="{{src}}" id="{{id}}" height="{{height}}" width="{{width}}" scrolling="auto"></iframe>';
 
-    Y.namespace('M.atto_ilosbutton').Button = Y.Base.create('button', Y.M.editor_atto.EditorPlugin, [], {
+    Y.namespace('M.atto_vidgridbutton').Button = Y.Base.create('button', Y.M.editor_atto.EditorPlugin, [], {
 
         /**
          * Initialize the button
@@ -53,10 +53,10 @@ var COMPONENTNAME = 'atto_ilosbutton',
 
             var $icon = 'iconone';
 
-            // Add the ilosbutton icon/buttons.
+            // Add the vidgridbutton icon/buttons.
             this.addButton({
                 icon: 'ed/' + $icon,
-                iconComponent: 'atto_ilosbutton',
+                iconComponent: 'atto_vidgridbutton',
                 buttonName: $icon,
                 callback: this._displayDialogue,
                 callbackArgs: $icon
@@ -64,7 +64,7 @@ var COMPONENTNAME = 'atto_ilosbutton',
         },
 
         /**
-         * Display the ilosbutton Dialogue
+         * Display the vidgridbutton Dialogue
          *
          * @method _displayDialogue
          * @private
@@ -167,7 +167,7 @@ var COMPONENTNAME = 'atto_ilosbutton',
                 var $search = $url.search("https://");
                 $url = $url.substr($search);
 
-                if ($url.indexOf("ilosvideos") <= 0)
+                if ($url.indexOf("vidgrid") <= 0)
                 {
                     return;
                 }

@@ -17,15 +17,15 @@
 /**
  * Plugin capabilities
  *
- * @package    atto_ilosbutton
- * @copyright  Ilos 2017
+ * @package    atto_vidgridbutton
+ * @copyright  VidGrid 2018
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 $capabilities = array(
-    'atto/ilosbutton:visible' => array(
+    'atto/vidgridbutton:visible' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_COURSE,
         'archetypes' => array(

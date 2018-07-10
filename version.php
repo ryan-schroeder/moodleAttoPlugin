@@ -15,21 +15,21 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Atto ilosbutton  version file.
+ * Atto vidgridbutton  version file.
  *
- * @package    atto_ilosbutton
- * @copyright  Ilos 2017
+ * @package    atto_vidgridbutton
+ * @copyright  VidGrid 2018
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
 // The current plugin version (Date: YYYYMMDDXX).
-$plugin->version   = 2018032901;
+$plugin->version   = 2018071001;
 
 // Requires this Moodle version - 2.7.
 $plugin->requires  = 2014051200;
 
 // Full name of the plugin (used for diagnostics).
-$plugin->component = 'atto_ilosbutton';
+$plugin->component = 'atto_vidgridbutton';
 $plugin->maturity  = MATURITY_BETA;

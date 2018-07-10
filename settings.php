@@ -15,21 +15,21 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * ilosbutton settings.
+ * vidgridbutton settings.
  *
- * @package   atto_ilosbutton
- * @copyright Ilos 2017
+ * @package   atto_vidgridbutton
+ * @copyright VidGrid 2018
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 
 defined('MOODLE_INTERNAL') || die();
 
-$ADMIN->add('editoratto', new admin_category('atto_ilosbutton', new lang_string('pluginname', 'atto_ilosbutton')));
+$ADMIN->add('editoratto', new admin_category('atto_vidgridbutton', new lang_string('pluginname', 'atto_vidgridbutton')));
 
-$settings = new admin_settingpage('atto_ilosbutton_settings', new lang_string('settings', 'atto_ilosbutton'));
+$settings = new admin_settingpage('atto_vidgridbutton_settings', new lang_string('settings', 'atto_vidgridbutton'));
 if ($ADMIN->fulltree) {
     // An option setting.
-    $settings->add(new admin_setting_configtext('atto_ilosbutton/orgApiKey',
-        get_string('orgApiKey', 'atto_ilosbutton'), '', '', PARAM_TEXT));
+    $settings->add(new admin_setting_configtext('atto_vidgridbutton/orgApiKey',
+        get_string('orgApiKey', 'atto_vidgridbutton'), '', '', PARAM_TEXT));
 }
