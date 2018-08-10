@@ -7,7 +7,6 @@ move 'Atto HTML editor' to the top of the list. Make sure that Atto is enabled b
 
 ##Installation instructions:
 
-TODO vidgrid, update this once the path to github changes
 1. Get the latest release source package (either as zip or tar.gz) from https://github.com/ilosvideos/moodleAttoPlugin/releases
 1. Log in to Moodle server.
 1. (Upgrade only) delete /lib/editor/atto/plugins/vidgridbutton
