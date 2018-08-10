@@ -1,5 +1,5 @@
 {
-    "moodle-atto_ilosbutton-button": {
+    "moodle-atto_vidgridbutton-button": {
         "requires": [
             "moodle-editor_atto-plugin"
         ]
