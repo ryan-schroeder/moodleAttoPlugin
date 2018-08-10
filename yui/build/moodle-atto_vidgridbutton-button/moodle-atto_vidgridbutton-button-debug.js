@@ -1,4 +1,4 @@
-YUI.add('moodle-atto_atto_vidgridbutton-button', function (Y, NAME) {
+YUI.add('moodle-atto_vidgridbutton-button', function (Y, NAME) {
 
 // This file is part of Moodle - http://moodle.org/
 //
@@ -205,4 +205,4 @@ var COMPONENTNAME = 'atto_vidgridbutton',
     });
 
 
-}, '@VERSION@');
+}, '@VERSION@', {"requires": ["moodle-editor_atto-plugin"]});
