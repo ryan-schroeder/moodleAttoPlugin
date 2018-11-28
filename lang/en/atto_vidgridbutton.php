@@ -28,5 +28,5 @@ $string['settings'] = 'VidGrid';
 $string['browse'] = 'Browse';
 $string['visible'] = 'Visible';
 $string['dialogtitle'] = 'Embed from VidGrid';
-$string['orgApiKey'] = 'Cunsumer key (public key)';
+$string['orgApiKey'] = 'Consumer key (public key)';
 $string['vidgridbutton:visible'] = 'Visible';
