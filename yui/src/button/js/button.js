@@ -15,7 +15,9 @@
 
 /*
  * @package    atto_vidgridbutton
- * @copyright  VidGrid 2018 With contributions from Joseph Malmsten (joseph.malmsten@gmail.com)
+ * @copyright  Panopto 2009 - 2016 With contributions from Joseph Malmsten (joseph.malmsten@gmail.com)
+ * @copyright  ilos 2017
+ * @copyright  VidGrid 2018 - 2020
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
