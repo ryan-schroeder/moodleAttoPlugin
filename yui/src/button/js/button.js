@@ -33,7 +33,7 @@
  * @extends M.editor_atto.EditorPlugin
  */
 
-var _serverPath = 'https://app.vidgrid.com/lti/embed';
+var _serverPath = 'https://app.vidgrid.com/lti/embedSsoAutoLogin';
 var _iframeId = 'moodleLtiIframe';
 
 var COMPONENTNAME = 'atto_vidgridbutton',
